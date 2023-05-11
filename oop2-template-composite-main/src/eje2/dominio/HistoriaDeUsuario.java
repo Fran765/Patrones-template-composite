@@ -8,7 +8,7 @@ public class HistoriaDeUsuario extends ItemDeTrabajo {
 	private List<ItemDeTrabajo> listaDeItems;
 
 	public HistoriaDeUsuario(String nombre) {
-		super(nombre);
+		super(nombre, 0);
 		this.listaDeItems = new ArrayList<ItemDeTrabajo>();
 	}
 
@@ -18,11 +18,10 @@ public class HistoriaDeUsuario extends ItemDeTrabajo {
 
 	@Override
 	public Integer tiempoNecesario() {
-		Integer tiempoRequerido = 0;
 		for (ItemDeTrabajo item : listaDeItems) {
-			tiempoRequerido += item.tiempoNecesario();
+			this.tiempoTrabajo += item.tiempoNecesario();
 		}
-		return tiempoRequerido;
+		return this.tiempoTrabajo;
 	}
 
 }

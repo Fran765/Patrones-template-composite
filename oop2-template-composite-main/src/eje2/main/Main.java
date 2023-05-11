@@ -15,6 +15,7 @@ public class Main {
 
 		historia.agregarItem(spike);
 		historia.agregarItem(tarea);
+		historia.agregarItem(tarea1);
 
 		System.out.println(historia.tiempoNecesario());
 
