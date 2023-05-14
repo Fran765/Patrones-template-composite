@@ -2,36 +2,52 @@ package eje4.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
+import eje4.dominio.Calculador;
 import eje4.dominio.Jubilado;
 import eje4.dominio.NoJubilado;
+import static java.time.LocalDate.now;
 
 class CalculadorTest {
 
 	@Test
-	void calculadorTest1() {
+	void calculadorJubiladoSinPromocion() {
 
-		Jubilado jubilado = new Jubilado(5);
-		NoJubilado noJubilado = new NoJubilado(5);
+		Calculador jubilado = new Jubilado(now().getMonth().getValue() -1);
 
-		double resultadoJubilado = 1000;
-		double resultadoNoJubilado = 1150;
+		double resultadoJubilado = 110;
 
-		assertEquals(resultadoJubilado, jubilado.calcularPrecio(1000));
-		assertEquals(resultadoNoJubilado, noJubilado.calcularPrecio(1000));
+		assertEquals(resultadoJubilado, jubilado.calcularPrecio(100));
 
 	}
 
 	@Test
-	void calculadorTest2() {
-		Jubilado jubilado = new Jubilado(3);
-		NoJubilado noJubilado = new NoJubilado(3);
+	void calculadorJubiladoConPromocion() {
+		Calculador jubilado = new Jubilado(now().getMonth().getValue());
 
-		double resultadoJubilado = 1100;
-		double resultadoNoJubilado = 1210;
+		double resultadoJubilado = 100;
 
-		assertEquals(resultadoJubilado, jubilado.calcularPrecio(1000));
-		assertEquals(resultadoNoJubilado, noJubilado.calcularPrecio(1000));
+		assertEquals(resultadoJubilado, jubilado.calcularPrecio(100));
+	}
+
+	@Test
+	void calculadorNoJubiladoSinPromocion() {
+		Calculador noJubilado = new NoJubilado(now().getMonth().getValue() - 1);
+
+		double resultadoNoJubilado = 121;
+
+		assertEquals(resultadoNoJubilado, noJubilado.calcularPrecio(100));
+	}
+
+	@Test
+	void calculadorNoJubialdoConPromocion() {
+		Calculador noJubilado = new NoJubilado(now().getMonth().getValue());
+
+		double resultadoNoJubilado = 115;
+
+		assertEquals(resultadoNoJubilado, noJubilado.calcularPrecio(100));
 	}
 }
